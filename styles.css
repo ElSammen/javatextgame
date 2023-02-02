@@ -1,0 +1,44 @@
+:root {
+box-sizing: border-box;
+background-color: rgb(44, 44, 44);
+}
+
+body {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0;
+margin: 0;
+}
+
+#usertext {
+    text-align: center;
+}
+
+#gamearea {
+    background-color: rgb(33, 32, 32);
+    color: rgb(47, 198, 14);
+    font-family: "Garamond";
+    font-weight: 550;
+    width: 100vw;
+}
+
+.blink_me {
+    animation: blinker 1.5s linear infinite;
+  }
+  
+  @keyframes blinker {
+    5% {
+      opacity: 100%;
+    }
+  }
+
+#imgholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    width: 500;
+    height: 350;
+}
