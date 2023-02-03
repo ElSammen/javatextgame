@@ -84,38 +84,31 @@ class Room {
     //output the room which is to the north of current location
     
 
-    move(direction) {
-      if (direction in this._linkedRooms) {
+    usInput(direction) {
+      if (direction in this._linkedRooms)  {
         return this._linkedRooms[direction];
-      } else {
-        alert("You can't go that way",);
-        alert(this._name)
-        return this;
       }
     }
   }
   
 
   class Item {
-    constructor(name) {
+    constructor(name, state) {
       this._name = name,
-        this._description = ""
+      this._description = "",
+      this._state = state
     }
   
     set name(value) {
-      if (value.length < 4) {
-        alert("Name is too short.");
-        return;
-      }
       this._name = value;
     }
   
     set description(value) {
-      if (value.length < 4) {
-        alert("Decription is too short.");
-        return;
-      }
       this._name = value;
+    }
+
+    set state(value){
+      this._state = value;
     }
   
     get name() {
@@ -149,26 +142,14 @@ class Room {
         this._item = ""
     }
     set name(value) {
-      if (value.length < 4) {
-        alert("Name is too short.");
-        return;
-      }
       this._name = value;
     }
   
     set description(value) {
-      if (value.length < 4) {
-        alert("Decription is too short.");
-        return;
-      }
       this._description = value;
     }
   
     set conversation(value) {
-      if (value.length < 4) {
-        alert("conversation is too short.");
-        return;
-      }
       this._conversation = value;
     }
     get name() {
@@ -208,47 +189,52 @@ class Room {
 
 const Wizard1 = new Character("Wizard")
 Wizard1.conversation = "How dare ye trespass in mine own domain. Fetch me my arcane scroll and magic potion and I MAY not turn you into a tin of beans"
-Wizard1.description = "wearing a crooked purple hat, he has yellow bleary eyes, and you detect a strong odour of stale urine"
-const Wizard2 = new Character("Potion Drunk Wizard", "Even more crooked hat, angry yellow eyes, overwhelming stench of urine", "Ha-ha, you fool! You fell victim to one of the classic blunders, never trust a wizard in the woods when his bottle of grog and dirty magazines are on the line.")
+Wizard1.description = "smelling rather stale for this time of day"
+const Wizard2 = new Character("Wizard")
+Wizard2.description = "just as smelly as before and also rather angry"
 const OddTree = new Character("Tree")
 OddTree.conversation = "....... (he's rather quiet as trees go)"
 OddTree.description = "a tree, pretty dead one infact."
 const Goblin = new Character("Man behind counter")
 Goblin.conversation = "Gee whizz, I sure do wish I hadn't lost my commemorative 2012 London Olympics coin"
-Goblin.description = "testststst"
 
 ///////////////////////////////////// Room vars
 
 const ForestEntrance = new Room("Entrance");
-ForestEntrance.description = "before you lies the entrance to a rather uninviting set of woods, google maps says this will shave off a good 20 minutes on your route to McDonalds. Dare ye enter?";
+ForestEntrance.description = "before you is a particularly uninviting set of woods, google maps says this will shave off a good 20 minutes on your route to McDonalds. Dare ye enter?";
 ForestEntrance._bgimage = "images/entrance.png"
 const ForestClearing = new Room("a Clearing in the Forest")
-ForestClearing.description = "After a short walk into the woods you come into a clearing, one inhabited by a man unmistakeably a sorceror of some degree. Unfortunately, he also notices you.";
+ForestClearing.description = "you come into a clearing, you notice a scruffy looking man in a wizards hat. Unfortunately, he also notices you.";
 ForestClearing._bgimage = "images/wizard1.png"
 const ForkRoad = new Room("Fork in the Road")
-ForkRoad.description = "You come across a forked path ahead of you. East or West. You begin to feel like your actions are being scrutinized, but you decide against it."
+ForkRoad.description = "you come across a forked path ahead of you. The voice in your head tells you that you can go east or west."
 ForkRoad._bgimage = "images/crossroad.png"
 const MoonlitCopse = new Room("Exposed Copse")
-MoonlitCopse.description =  "Your eastward journey along the path leads you to a solitary tree. Glinting at you from the bushes, you see a 2012 London Olympics Commemorative Coin. You almost don't pick it up."
+MoonlitCopse.description =  "going east, you come across a lonely looking tree. Glinting at you from the bushes, you see a 2012 London Olympics Commemorative Coin. You almost don't pick it up."
 MoonlitCopse._bgimage = "images/lonelycopse1.png"
 const FSouthWest = new Room("South Western Portion")
-FSouthWest.description = "The disembodied voice in your head tells you that you're in the south western portion of the forest. You vaguely see something more interesting further ahead."
+FSouthWest.description = "you get the vague sensation you're in a south western portion of the forest, you believe it. You can see something more appealing up ahead."
 FSouthWest._bgimage = "images/swest.png"
 const OldeShoppe = new Room("Convenient Spar")
-OldeShoppe.description = "As you approach you discover a very conveniently located Spar. Where's the harm in stepping inside?"
+OldeShoppe.description = "as you approach you discover a very conveniently located Spar. Where's the harm in stepping inside?"
 OldeShoppe._bgimage = "images/shoppe.png"
 const ShoppeInner = new Room("Inside the Spar")
-ShoppeInner.description = "You enter the Spar, a charming hobgoblin greets you from the counter'"
-ShoppeInner._bgimage = "images/spar.png"
+ShoppeInner.description = "you enter the Spar, a charming hobgoblin greets you from the counter'"
+ShoppeInner._bgimage = "images/spar2.png"
 const ForestHeart = new Room("Heart of the Forest")
 ForestHeart.description = "the centre of the forest, you feel a sense of calm and peace. You also don't feel like there's much worth doing here."
 ForestHeart._bgimage = "images/forestheart.png"
 const deadTree = new Room("Dead Tree")
 deadTree.description = "You come across a long dead tree. You spot something hanging out of it"
 deadTree._bgimage = "images/deadtree.png"
-const wizardShack = new Room("Stage of Battle", "You see our pizzy wizzy")
+const wizardShack = new Room("In the shack")
+wizardShack._bgimage = "images/innershack.png"
 const escaped = new Room("Exit Path")
 escaped.description = "Success, with every footstep the outside world and a McDouble grow ever closer. Congratulations, you escaped!"
+escaped._bgimage = "images/success.gif"
+const Failure = new Room("Failure")
+Failure.description = "You have failed to escape the forest."
+Failure._bgimage = "failed.gif"
 
 //////////////////////////////////////  Room links
 
@@ -278,35 +264,29 @@ wizardShack.character = Wizard2;
 
 
 //////////////////////////////////////  Item vars
+// state 0 = not collected, state 1 = collected, state 2 = used
+
 
 const dodgyMag = new Item("Sticky Arcane Scroll")
 dodgyMag.description = "The 'Arcane scroll' the wizard was after, it is headed with 3 X's and features scantily clad witches wrestling on the cover"
+dodgyMag._state = 0;
 const buckFast = new Item("Magic Potion")
 buckFast.description = "The 'Magic Potion' the wizard asked for, it's still fizzing and the label calls it a caffeinated tonic wine"
+buckFast._state = 0;
 const uselessCoin = new Item("2012 Olympic Coin")
 uselessCoin.description = "A near on worthless commemorative coin from the 2012 London Olympics. Perhaps someone else will appreciate it more than you do."
+uselessCoin._state = 0;
 OldeShoppe._item = dodgyMag;
 deadTree._item = buckFast;
 MoonlitCopse._item = uselessCoin;
 
 
 inventory = [];
-
-function inventoryManagement(item) {
-  if (item === undefined) {
-    return "You have nothing in your inventory"
-  } else {
-    inventory.push(item)
-    return "You have picked up " + item.name
-  }
-  }
-
-function inventoryCheck() {
-    if (currentRoom === ShoppeInner) {
-      if (inventory.includes(uselessCoin)) {
-       Goblin.conversation = "You found my coin! Thank you, take this dodgy scroll I found by the bins"
-       inventory.push(dodgyMag)
-      }}}
+inventory.push(dodgyMag);
+inventory.push(buckFast);
+inventory.push(uselessCoin);
+  
+    
 
  /**
    * Subroutine to display information about the current room
@@ -344,36 +324,68 @@ function inventoryCheck() {
     console.log (currentRoom);
     displayRoomInfo(currentRoom);
   
-    //
-  
+    /////////////////////////////////////// Victory and Failure conditions
+  function failure() {
+    alert("The wizard has turned you into a tin of beans")
+    currentRoom = Failure
+    document.getElementById("usertext").classList.add("hidden")
+    let failureMessage = "<p>" + "You did not manage to escape the forest" + "</p>" + "<p>" + "Press below to try again" + "</p>"
+    document.getElementById("textarea").innerHTML = failureMessage
+    document.getElementById("imgholder").innerHTML = "<img id='bgimage' src='images/failed.gif' alt='failed'>";
+    document.getElementById("details").insertAdjacentHTML("beforeend", "<input id='reset' type='button' value='Refresh' onclick='window.location.reload()'>");
+  }
+console.log(inventory)
+  //////////////////////////////////////
     //handle commands
     document.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
         command = document.getElementById("usertext").value;
-        const directions = ["north", "south", "east", "west"]
-        if (directions.includes(command.toLowerCase())) {
-          currentRoom = currentRoom.move(command)
+        const commands = ["north", "south", "east", "west", "take", "give"]
+        if (commands.includes(command.toLowerCase())) {
+          currentRoom = currentRoom.usInput(command)
           displayRoomInfo(currentRoom);
         } else {
           document.getElementById("usertext").value = ""
           alert("that is not a valid command please try again")
+        } 
+        if (command.toLowerCase() === "take") {
+          document.getElementById("usertext").value = ""
+          currentRoom._item._state = 1}
+          if (currentRoom === ShoppeInner) { 
+            if (command.toLowerCase() === "give") {
+              if (uselessCoin._state === 1) {
+            if (currentRoom === ShoppeInner) {
+            Goblin.conversation = "You found my coin! Thank you, take this dodgy scroll I found by the bins"
+            dodgyMag._state = 1;
+            uselessCoin._state = 2;}}}}
         }
-        
-
-        
+      
+        console.log(inventory)
          if (currentRoom === wizardShack) { // will be for fighting the wizard
-            if (inventory.includes(dodgyMag) && inventory.includes(buckFast)) {
-              document.getElementById("usertext").value = ""
-              alert("The wizard is impressed with your offerings and he lets you pass")
+            if (dodgyMag._state === 1 && buckFast._state === 1) {
+              Wizard2.conversation = "You have brought me what I asked for, I will permit you to pass. Do not let the metaphorical door hit you on the way out."
               currentRoom = escaped
-              displayRoomInfo(currentRoom);
-            } else {
-              document.getElementById("usertext").value = ""
-              alert("The wizard has accosted you and he seems mad you didn't bring what he asked for!")
-            }}
-       
+              displayRoomInfo(currentRoom);}
+           if (dodgyMag._state === 0 && buckFast._state === 0) {
+              Wizard2.conversation = "You have ignored my polite request, make your peace ne'erdowell!"
+                setTimeout(function(){ failure() }, 3000);
+            }
+        if (currentRoom === ShoppeInner) {
+          if (uselessCoin._state === 1) {
+            
+            console.log(inventory)
+          }}
+            if (uselessCoin._state > 0) {
+              MoonlitCopse._bgimage = "images/lonelycopse2.png"
+              inventory.push(uselessCoin)
+             }
+                   
+                   if (buckFast._state > 0) {
+                    deadTree._bgimage = "images/deadtree2.png"
+                  inventory.push(buckFast)}
+                     
         
-      };
+    };
     });
   }
   startGame();
