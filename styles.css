@@ -20,6 +20,7 @@ margin: 0;
     color: rgb(47, 198, 14);
     font-family: "Garamond";
     font-weight: 550;
+    font-size: 25px;
     width: 100vw;
 }
 
@@ -42,3 +43,13 @@ margin: 0;
     width: 500;
     height: 350;
 }
+
+.hidden {
+    display: none;
+}
+
+#reset {
+  background-color: rgb(33, 32, 32);
+  color: rgb(47, 198, 14);
+}
+
